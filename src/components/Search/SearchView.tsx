@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
@@ -55,14 +56,23 @@ export default function SearchView() {
         </Typography>
       </Box>
       <Grid container>
-        <Grid item xs={2} />
+        <Grid item xs={1} />
         <SearchDropdown />
         <SearchInput
           focused={focused}
           handleFocus={handleFocus}
           handleChildClick={handleChildClick}
         />
-        <Grid item xs={2} />
+
+        <Grid item xs={2}>
+          <Button
+            variant="contained"
+            sx={{ fontSize: '1em', height: '1.4375em', padding: '16.5px 14px' }}
+          >
+            Add Revision(s)
+          </Button>
+        </Grid>
+        <Grid item xs={1} />
       </Grid>
     </Container>
   );

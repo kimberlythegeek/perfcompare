@@ -5,6 +5,10 @@ const typography = {
     fontFamily: 'Zilla Slab',
     fontSize: h1Size,
   },
+  button: {
+    textTransform: 'none',
+    fontWeight: 'bold',
+  },
   fontFamily: 'Inter',
 };
 

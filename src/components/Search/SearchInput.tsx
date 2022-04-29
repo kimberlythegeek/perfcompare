@@ -26,7 +26,7 @@ class SearchInput extends React.Component<SearchInputProps> {
       searchResults,
     } = this.props;
     return (
-      <Grid item xs={6}>
+      <Grid item xs={7}>
         {!inputError && !inputHelperText ? (
           /* text field without errors */
           <TextField
