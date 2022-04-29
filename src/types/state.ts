@@ -23,7 +23,6 @@ export type Revision = {
 
 export type SearchState = {
   repository: Repository['name'];
-  searchIsFocused: boolean;
   searchResults: Revision[];
   searchValue: string;
   inputError: boolean;
