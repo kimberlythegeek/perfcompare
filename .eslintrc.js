@@ -26,6 +26,7 @@ module.exports = {
     },
   },
   rules: {
+    'implicit-arrow-linebreak': 'off',
     'import/order': [
       'error',
       {
@@ -78,7 +79,6 @@ module.exports = {
       rules: {
         'react/prop-types': 'off',
         'function-paren-newline': 'off',
-        'implicit-arrow-linebreak': 'off',
         'import/no-extraneous-dependencies': 'off',
         'import/no-import-module-exports': 'off',
         '@typescript-eslint/indent': 'off',
