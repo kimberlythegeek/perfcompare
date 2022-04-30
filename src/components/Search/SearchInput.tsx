@@ -5,10 +5,8 @@ import TextField from '@mui/material/TextField';
 import { connect } from 'react-redux';
 
 import { Revision, State } from '../../types/state';
-import SearchViewHelper from '../../utils/searchViewHelper';
+import { handleChangeSearch } from '../../utils/searchViewHelper';
 import SearchResultsList from './SearchResultsList';
-
-const { handleChangeSearch } = SearchViewHelper;
 
 function SearchInput(props: SearchInputProps) {
   const {

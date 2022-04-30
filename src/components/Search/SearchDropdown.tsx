@@ -8,9 +8,7 @@ import Select from '@mui/material/Select';
 import { connect } from 'react-redux';
 
 import type { State } from '../../types/state';
-import SearchViewHelper from '../../utils/searchViewHelper';
-
-const { handleChangeDropdown } = SearchViewHelper;
+import { handleChangeDropdown } from '../../utils/searchViewHelper';
 
 function SearchDropdown(props: SearchDropdownProps) {
   const { repository } = props;
