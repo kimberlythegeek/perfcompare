@@ -6,9 +6,8 @@ import { connect } from 'react-redux';
 
 import store from '../../common/store';
 import { fetchRecentRevisions } from '../../thunks/searchThunk';
-import { Revision, State } from '../../types/state';
+import { State } from '../../types/state';
 import { handleChangeSearch } from '../../utils/searchViewHelper';
-import SearchResultsList from './SearchResultsList';
 
 class SearchInput extends React.Component<SearchInputProps> {
   componentDidMount() {
@@ -17,16 +16,9 @@ class SearchInput extends React.Component<SearchInputProps> {
   }
 
   render() {
-    const {
-      focused,
-      handleFocus,
-      handleChildClick,
-      inputError,
-      inputHelperText,
-      searchResults,
-    } = this.props;
+    const { handleFocus, inputError, inputHelperText } = this.props;
     return (
-      <Grid item xs={6}>
+      <Grid item xs={7}>
         {!inputError && !inputHelperText ? (
           /* text field without errors */
           <TextField
@@ -50,9 +42,6 @@ class SearchInput extends React.Component<SearchInputProps> {
             onChange={handleChangeSearch}
           />
         )}
-        {searchResults.length > 0 && focused && (
-          <SearchResultsList handleChildClick={handleChildClick} />
-        )}
       </Grid>
     );
   }
@@ -60,11 +49,8 @@ class SearchInput extends React.Component<SearchInputProps> {
 
 interface SearchInputProps {
   handleFocus: (e: React.FocusEvent) => void;
-  handleChildClick: (e: React.MouseEvent) => void;
   inputError: boolean;
   inputHelperText: string;
-  focused: boolean;
-  searchResults: Revision[];
 }
 
 function mapStateToProps(state: State) {
