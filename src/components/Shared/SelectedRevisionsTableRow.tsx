@@ -69,6 +69,7 @@ function SelectedRevisionsTableRow(props: SelectedRevisionsRowProps) {
         </TableCell>
       </TableRow>
       <Popover
+        className="edit-revision-popover"
         open={open}
         anchorEl={anchorEl}
         onClose={() => setOpen(false)}
@@ -76,9 +77,13 @@ function SelectedRevisionsTableRow(props: SelectedRevisionsRowProps) {
           vertical: 'bottom',
           horizontal: 'left',
         }}
-        PaperProps={{
-          style: { width: '90%' },
-        }}
+        // PaperProps={{
+        //   style: {
+        //     width: '100%',
+        //     maxWidth: '1200px',
+        //     padding: '10px 24px 0 24px',
+        //   },
+        // }}
       >
         <RevisionSearch view={view} widths={elementWidths} />
       </Popover>
