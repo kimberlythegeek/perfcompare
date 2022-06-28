@@ -7,7 +7,7 @@ import type { Revision, State } from '../../types/state';
 import SearchResultsListItem from './SearchResultsListItem';
 
 function SearchResultsList(props: SearchResultsListProps) {
-  const { searchResults } = props;
+  const { searchResults, view } = props;
   const { handleToggle } = useCheckRevision();
   return (
     <Box
@@ -25,16 +25,31 @@ function SearchResultsList(props: SearchResultsListProps) {
         },
       }}
       alignItems="flex-end"
+      className="search-results-container"
     >
       <List className="search-revision-list">
-        {searchResults.map((item, index) => (
-          <SearchResultsListItem
-            key={item.id}
-            index={index}
-            item={item}
-            handleToggle={handleToggle}
-          />
-        ))}
+        {view == 'search' &&
+          searchResults.map((item, index) => (
+            <SearchResultsListItem
+              key={item.id}
+              index={index}
+              item={item}
+              handleToggle={handleToggle}
+              view={view}
+            />
+          ))}
+        {view == 'compare-results' &&
+          searchResults
+            .slice(0, 5)
+            .map((item, index) => (
+              <SearchResultsListItem
+                key={item.id}
+                index={index}
+                item={item}
+                handleToggle={handleToggle}
+                view={view}
+              />
+            ))}
       </List>
     </Box>
   );
@@ -42,6 +57,7 @@ function SearchResultsList(props: SearchResultsListProps) {
 
 interface SearchResultsListProps {
   searchResults: Revision[];
+  view: 'compare-results' | 'search';
 }
 
 function mapStateToProps(state: State) {

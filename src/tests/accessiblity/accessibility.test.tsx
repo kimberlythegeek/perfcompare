@@ -31,7 +31,7 @@ describe('Accessibility', () => {
     const { testData } = getTestData();
     store.dispatch(updateSearchResults(testData));
 
-    const { container } = renderWithRouter(<SearchResultsList />);
+    const { container } = renderWithRouter(<SearchResultsList view="search" />);
     const results = await axe(container);
     expect(results).toHaveNoViolations();
   });
@@ -45,7 +45,19 @@ describe('Accessibility', () => {
     expect(results).toHaveNoViolations();
   });
 
-  it('SelectedRevisionsTable should have no violations', async () => {
+  it('CompareView SelectedRevisionsTable should have no violations', async () => {
+    const { testData } = getTestData();
+    const selectedRevisions = testData.slice(0, 4);
+    store.dispatch(setSelectedRevisions(selectedRevisions));
+
+    const { container } = renderWithRouter(
+      <SelectedRevisionsTable view="compare-results" />,
+    );
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
+  });
+
+  it('SearchView SelectedRevisionsTable should have no violations', async () => {
     const { testData } = getTestData();
     const selectedRevisions = testData.slice(0, 4);
     store.dispatch(setSelectedRevisions(selectedRevisions));
