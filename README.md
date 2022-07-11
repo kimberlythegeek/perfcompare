@@ -29,7 +29,7 @@ npm install
 npm run start-dev
 ```
 
-### Contributing
+## Contributing
 
 We welcome contributions to our project.
 
@@ -41,7 +41,7 @@ After addressing the issue, ensure both tests and linting pass before submitting
 
 When submitting a pull request, please mention the issue number to link the pull request and issue to one another. You can do this by typing # following immediately by the issue number, i.e., `#123`
 
-Submit your pull request to the `staging` branch. `staging` is merged to master weekly on Monday.
+Submit your pull request to the `staging` branch. `staging` is merged to master weekly.
 
 We recommend the following workflow to contribute to PerfCompare:
 
@@ -54,6 +54,15 @@ git fetch upstream
 git rebase upstream/master
 git push --force origin <local branch>
 ```
+
+### Deployment
+
+PerfCompare is deployed automatically on every push to `staging` and `master`.
+
+| Website Env | URL                                        |
+| ----------- | ------------------------------------------ |
+| Staging     | https://perfcompare-staging.herokuapp.com/ |
+| Production  | https://perfcompare-master.herokuapp.com/  |
 
 ### Validating JavaScript
 
@@ -87,7 +96,7 @@ npm run test:watch
 npm run test:coverage
 ```
 
-#### Snapshot Tests
+### Snapshot Tests
 
 When making changes to the UI, snapshots should also be updated to match. Snapshot tests
 ensure no UI changes occur unexpectedly.
