@@ -3,7 +3,6 @@ import React from 'react';
 import { useSnackbar, VariantType } from 'notistack';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { maxRevisionsError } from '../common/constants';
 import type { RootState } from '../common/store';
 import { setCheckedRevisions } from '../reducers/CheckedRevisions';
 
@@ -15,13 +14,13 @@ const useCheckRevision = () => {
     (state: RootState) => state.checkedRevisions.revisions,
   );
 
-  const handleToggle = (e: React.MouseEvent) => {
+  const handleToggle = (e: React.MouseEvent, maxRevisions: number) => {
     const revisionIndex = parseInt((e.currentTarget as HTMLElement).id, 10);
     const isChecked = checkedRevisions.includes(revisionIndex);
     const newChecked = [...checkedRevisions];
 
     // if item is not already checked, add to checked
-    if (checkedRevisions.length < 4 && !isChecked) {
+    if (checkedRevisions.length < maxRevisions && !isChecked) {
       newChecked.push(revisionIndex);
     } else if (isChecked) {
       // if item is already checked, remove from checked
@@ -29,7 +28,7 @@ const useCheckRevision = () => {
     } else {
       // if there are already 4 checked revisions, print a warning
       const variant: VariantType = 'warning';
-      enqueueSnackbar(maxRevisionsError, { variant });
+      enqueueSnackbar(`Maximum ${maxRevisions} revision(s).`, { variant });
     }
 
     dispatch(setCheckedRevisions(newChecked));

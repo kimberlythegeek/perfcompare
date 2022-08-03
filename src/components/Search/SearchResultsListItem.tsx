@@ -11,23 +11,30 @@ import type { Revision } from '../../types/state';
 import { truncateHash, getLatestCommitMessage } from '../../utils/helpers';
 
 function SearchResultsListItem(props: SearchResultsListItemProps) {
-  const { index, item } = props;
+  const { index, item, view } = props;
   const isChecked: boolean = useSelector((state: RootState) =>
     state.checkedRevisions.revisions.includes(index),
   );
   const { handleToggle } = useCheckRevision();
 
   const indexString = index.toString();
-
   const revisionHash = truncateHash(item.revision);
   const commitMessage = getLatestCommitMessage(item);
+  const maxRevisions = view == 'compare-results' ? 1 : 4;
+  const checkedRevisions: number[] = useSelector(
+    (state: RootState) => state.checkedRevisions.revisions,
+  );
 
   return (
     <>
       <ListItemButton
         key={item.id}
         id={indexString}
-        onClick={(e) => handleToggle(e)}
+        onClick={(e) => handleToggle(e, maxRevisions)}
+        disabled={
+          checkedRevisions.length == maxRevisions &&
+          !checkedRevisions.includes(index)
+        }
       >
         <ListItem
           className="search-revision-item search-revision"
@@ -61,6 +68,7 @@ function SearchResultsListItem(props: SearchResultsListItemProps) {
 interface SearchResultsListItemProps {
   index: number;
   item: Revision;
+  view: 'search' | 'compare-results';
 }
 
 export default SearchResultsListItem;
