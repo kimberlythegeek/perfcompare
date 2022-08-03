@@ -9,6 +9,7 @@ import CompareResultsTable from './CompareResultsTable';
 
 function CompareResultsView(props: CompareResultsViewProps) {
   const { revisions, mode } = props;
+
   return (
     <Container maxWidth="lg">
       <PerfCompareHeader />

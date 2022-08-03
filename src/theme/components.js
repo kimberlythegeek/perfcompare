@@ -55,34 +55,13 @@ const components = {
       },
     },
   },
-  MuiTable: {
-    styleOverrides: {
-      root: {
-        '&.compare-results-selected-table': {
-          '& .MuiTableCell-root': {
-            paddingTop: '0',
-            paddingBottom: '0',
-          },
-        },
-        '&.search-selected-table': {
-          '& .MuiTableCell-root': {
-            paddingTop: '10px',
-            paddingBottom: '10px',
-          },
-        },
-      },
-    },
-  },
   MuiTableCell: {
     styleOverrides: {
       root: {
-        paddingTop: '10px',
-        paddingBottom: '10px',
         '.cellStyle': {
           fontWeight: 600,
           borderRadius: '2.5px',
           padding: '5px',
-          display: 'flex',
           color: '#737373',
           width: '50px',
           border: 'solid 1px #737373',
@@ -104,10 +83,6 @@ const components = {
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'center',
           backgroundSize: '10%',
-        },
-        '&.edit-search-results': {
-          border: 'none',
-          padding: '10px 5px 10px 5px',
         },
         '&.background-icon.dark-mode': {
           filter: 'invert(100%)',
@@ -141,7 +116,7 @@ const components = {
       root: {
         '&.layout': {
           marginBottom: '2rem',
-          tableLayout: 'fixed',
+          tableLayout: 'auto',
         },
       },
     },
