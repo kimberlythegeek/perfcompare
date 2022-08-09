@@ -26,8 +26,8 @@ function SearchResultsList(props: SearchResultsListProps) {
       alignItems="flex-end"
     >
       <List>
-        {searchResults.map((item, index) => (
-          <SearchResultsListItem key={item.id} index={index} item={item} />
+        {searchResults.map((item) => (
+          <SearchResultsListItem key={item.id} item={item} />
         ))}
       </List>
     </Box>

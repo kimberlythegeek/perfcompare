@@ -1,11 +1,12 @@
-import { ArrowForward } from '@mui/icons-material';
-import { Button } from '@mui/material';
+import ArrowForward from '@mui/icons-material/ArrowForward';
+import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import { connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { Revision, State } from '../../types/state';
+import type { RootState } from '../../common/store';
+import { Revision } from '../../types/state';
 import { truncateHash } from '../../utils/helpers';
 import PerfCompareHeader from '../Shared/PerfCompareHeader';
 import RevisionSearch from '../Shared/RevisionSearch';
@@ -60,10 +61,10 @@ interface SearchViewProps {
   selectedRevisions: Revision[];
 }
 
-function mapStateToProps(state: State) {
+function mapStateToProps(state: RootState) {
   return {
     searchResults: state.search.searchResults,
-    selectedRevisions: state.selectedRevisions.revisions,
+    selectedRevisions: state.revisions.selected,
   };
 }
 

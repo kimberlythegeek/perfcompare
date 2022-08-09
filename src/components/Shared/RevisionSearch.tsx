@@ -4,10 +4,12 @@ import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
-import { connect, useDispatch } from 'react-redux';
+import { connect } from 'react-redux';
 
-import { clearCheckedRevisions } from '../../reducers/CheckedRevisions';
-import type { Revision, State } from '../../types/state';
+import type { RootState } from '../../common/store';
+import { useAppDispatch } from '../../hooks/app';
+import { clearCheckedRevisions } from '../../reducers/RevisionSlice';
+import type { Revision } from '../../types/state';
 import EditSearchResultsTable from '../CompareResults/EditSearchResultsTable';
 import AddRevisionButton from '../Search/AddRevisionButton';
 import SearchDropdown from '../Search/SearchDropdown';
@@ -17,7 +19,7 @@ import SearchResultsList from '../Search/SearchResultsList';
 function RevisionSearch(props: RevisionSearchProps) {
   const [focused, setFocused] = useState(false);
   const { inputWidth, searchResults, view } = props;
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const handleFocus = (e: MouseEvent) => {
     if (
@@ -114,7 +116,7 @@ interface RevisionSearchProps {
   view: 'compare-results' | 'search';
 }
 
-function mapStateToProps(state: State) {
+function mapStateToProps(state: RootState) {
   return {
     searchResults: state.search.searchResults,
   };

@@ -7,10 +7,10 @@ import Link from '@mui/material/Link';
 import Popover from '@mui/material/Popover';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
-import { useDispatch } from 'react-redux';
 
 import { repoMap } from '../../common/constants';
-import { deleteRevision } from '../../reducers/SelectedRevisions';
+import { useAppDispatch } from '../../hooks/app';
+import { removeSelectedRevision } from '../../reducers/RevisionSlice';
 import { Repository, Revision } from '../../types/state';
 import {
   formatDate,
@@ -23,8 +23,7 @@ import RevisionSearch from './RevisionSearch';
 function SelectedRevisionsTableRow(props: SelectedRevisionsRowProps) {
   const { row, index, view } = props;
   const [isOpen, setIsOpen] = useState(false);
-  const dispatch = useDispatch();
-
+  const dispatch = useAppDispatch();
   const commitMessage = getLatestCommitMessage(row);
   const date = formatDate(row.push_timestamp);
   const hash = truncateHash(row.revision);
@@ -50,7 +49,7 @@ function SelectedRevisionsTableRow(props: SelectedRevisionsRowProps) {
           {view == 'search' && (
             <IconButton
               id="close-button"
-              onClick={() => dispatch(deleteRevision(row.id))}
+              onClick={() => dispatch(removeSelectedRevision(row))}
             >
               <Close />
             </IconButton>
