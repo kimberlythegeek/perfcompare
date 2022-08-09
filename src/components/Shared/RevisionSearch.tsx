@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 
 import type { RootState } from '../../common/store';
 import { useAppDispatch } from '../../hooks/app';
-import { clearCheckedRevisions } from '../../reducers/CheckedRevisions';
+import { clearCheckedRevisions } from '../../reducers/RevisionSlice';
 import type { Revision } from '../../types/state';
 import EditSearchResultsTable from '../CompareResults/EditSearchResultsTable';
 import AddRevisionButton from '../Search/AddRevisionButton';

@@ -1,53 +1,32 @@
 import { useSnackbar, VariantType } from 'notistack';
 
 import { maxRevisionsError } from '../common/constants';
-import { clearCheckedRevisions } from '../reducers/CheckedRevisions';
-import { setSelectedRevisions } from '../reducers/SelectedRevisions';
-import { truncateHash } from '../utils/helpers';
+import {
+  clearCheckedRevisions,
+  addSelectedRevision,
+} from '../reducers/RevisionSlice';
 import { useAppDispatch, useAppSelector } from './app';
 
 const useSelectRevision = () => {
   const dispatch = useAppDispatch();
   const { enqueueSnackbar } = useSnackbar();
 
-  const searchResults = useAppSelector((state) => state.search.searchResults);
+  const checkedRevisions = useAppSelector((state) => state.revisions.checked);
 
-  const checkedRevisions = useAppSelector(
-    (state) => state.checkedRevisions.revisions,
-  );
-
-  const selectedRevisions = useAppSelector(
-    (state) => state.selectedRevisions.revisions,
-  );
+  const selectedRevisions = useAppSelector((state) => state.revisions.selected);
 
   const addSelectedRevisions = () => {
-    const newSelected = [...selectedRevisions];
     const variant: VariantType = 'warning';
 
-    checkedRevisions.every((item) => {
-      const revision = searchResults[item];
-      const isSelected = selectedRevisions.includes(revision);
-
+    checkedRevisions.forEach((revision) => {
       // Do not allow adding more than four revisions
       if (selectedRevisions.length == 4) {
         enqueueSnackbar(maxRevisionsError, { variant });
         return false;
       }
-
-      if (!isSelected) {
-        newSelected.push(revision);
-      } else if (isSelected) {
-        enqueueSnackbar(
-          `Revision ${truncateHash(revision.revision)} is already selected.`,
-          {
-            variant,
-          },
-        );
-      }
-
+      dispatch(addSelectedRevision(revision));
       return true;
     });
-    dispatch(setSelectedRevisions(newSelected));
     dispatch(clearCheckedRevisions());
   };
 

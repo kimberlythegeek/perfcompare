@@ -34,7 +34,7 @@ interface CompareResultsViewProps {
 
 function mapStateToProps(state: RootState) {
   return {
-    revisions: state.selectedRevisions.revisions,
+    revisions: state.revisions.selected,
   };
 }
 

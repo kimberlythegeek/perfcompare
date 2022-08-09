@@ -58,7 +58,7 @@ interface SelectedRevisionsProps {
 
 function mapStateToProps(state: RootState) {
   return {
-    revisions: state.selectedRevisions.revisions,
+    revisions: state.revisions.selected,
   };
 }
 
