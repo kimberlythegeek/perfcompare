@@ -1,4 +1,5 @@
 import userEvent from '@testing-library/user-event';
+import { act } from 'react-dom/test-utils';
 
 import { maxRevisionsError } from '../../common/constants';
 import SearchView from '../../components/Search/SearchView';
@@ -74,16 +75,12 @@ describe('SearchResultsList', () => {
     const searchInput = screen.getByRole('textbox');
     await user.click(searchInput);
 
-    const fleshWound = await screen.findByText(
-      "spam - it's just a flesh wound",
-    );
+    const result = screen.getByTestId('checkbox-1');
 
-    await user.click(fleshWound);
-    expect(store.getState().checkedRevisions.revisions[0]).toBe(1);
-    await user.click(fleshWound);
-    expect(
-      screen.getByTestId('checkbox-1').classList.contains('Mui-checked'),
-    ).toBe(false);
+    await user.click(result);
+    expect(store.getState().checkedRevisions.revisions[0]).toBe(testData[1]);
+    await user.click(result);
+    expect(result.classList.contains('Mui-checked')).toBe(false);
   });
 
   it('should not allow selecting more than four revisions', async () => {
