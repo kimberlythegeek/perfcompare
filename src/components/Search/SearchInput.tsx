@@ -3,12 +3,13 @@ import type { Dispatch, SetStateAction } from 'react';
 import TextField from '@mui/material/TextField';
 import { connect } from 'react-redux';
 
+import type { RootState } from '../../common/store';
 import useHandleChangeSearch from '../../hooks/useHandleChangeSearch';
-import { State } from '../../types/state';
 
 function SearchInput(props: SearchInputProps) {
-  const { setFocused, inputError, inputHelperText } = props;
+  const { setFocused, inputError, inputHelperText, view } = props;
   const { handleChangeSearch } = useHandleChangeSearch();
+  const size = view == 'compare-results' ? 'small' : undefined;
   return (
     <TextField
       error={inputError}
@@ -19,6 +20,7 @@ function SearchInput(props: SearchInputProps) {
       variant="outlined"
       sx={{ width: '100%' }}
       onChange={(e) => handleChangeSearch(e)}
+      size={size}
     />
   );
 }
@@ -27,9 +29,10 @@ interface SearchInputProps {
   setFocused: Dispatch<SetStateAction<boolean>>;
   inputError: boolean;
   inputHelperText: string;
+  view: 'compare-results' | 'search';
 }
 
-function mapStateToProps(state: State) {
+function mapStateToProps(state: RootState) {
   return {
     inputError: state.search.inputError,
     inputHelperText: state.search.inputHelperText,
