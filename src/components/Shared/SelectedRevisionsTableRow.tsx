@@ -10,7 +10,7 @@ import TableRow from '@mui/material/TableRow';
 
 import { repoMap } from '../../common/constants';
 import { useAppDispatch } from '../../hooks/app';
-import { deleteRevision } from '../../reducers/SelectedRevisions';
+import { deleteSelectedRevision } from '../../reducers/RevisionSlice';
 import { Repository, Revision } from '../../types/state';
 import {
   formatDate,
@@ -49,7 +49,7 @@ function SelectedRevisionsTableRow(props: SelectedRevisionsRowProps) {
           {view == 'search' && (
             <IconButton
               id="close-button"
-              onClick={() => dispatch(deleteRevision(row.id))}
+              onClick={() => dispatch(deleteSelectedRevision(index))}
             >
               <Close />
             </IconButton>

@@ -2,7 +2,7 @@ import userEvent from '@testing-library/user-event';
 import { act } from 'react-dom/test-utils';
 
 import SearchView from '../../components/Search/SearchView';
-import { setSelectedRevisions } from '../../reducers/SelectedRevisions';
+import { setSelectedRevisions } from '../../reducers/RevisionSlice';
 import getTestData from '../utils/fixtures';
 import { renderWithRouter, store } from '../utils/setupTests';
 import { screen } from '../utils/test-utils';

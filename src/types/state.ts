@@ -68,14 +68,9 @@ export type SearchState = {
   inputHelperText: string;
 };
 
-// contains the indices of currently checked revisions
-// in searchResults state
-export type CheckedRevisionsState = {
-  revisions: Revision[];
-};
-
-export type SelectedRevisionsState = {
-  revisions: Revision[];
+export type RevisionsState = {
+  checked: Revision[];
+  selected: Revision[];
 };
 
 export type CompareResultsState = CompareResultsItem[];

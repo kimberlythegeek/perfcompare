@@ -1,5 +1,4 @@
 import userEvent from '@testing-library/user-event';
-import { act } from 'react-dom/test-utils';
 
 import { maxRevisionsError } from '../../common/constants';
 import SearchView from '../../components/Search/SearchView';
@@ -78,7 +77,7 @@ describe('SearchResultsList', () => {
     const result = screen.getByTestId('checkbox-1');
 
     await user.click(result);
-    expect(store.getState().checkedRevisions.revisions[0]).toBe(testData[1]);
+    expect(store.getState().revisions.checked[0]).toBe(testData[1]);
     await user.click(result);
     expect(result.classList.contains('Mui-checked')).toBe(false);
   });

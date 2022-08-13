@@ -64,7 +64,7 @@ interface SearchViewProps {
 function mapStateToProps(state: RootState) {
   return {
     searchResults: state.search.searchResults,
-    selectedRevisions: state.selectedRevisions.revisions,
+    selectedRevisions: state.revisions.selected,
   };
 }
 

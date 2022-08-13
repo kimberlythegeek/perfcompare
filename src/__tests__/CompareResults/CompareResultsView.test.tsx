@@ -3,8 +3,8 @@ import { act } from 'react-dom/test-utils';
 
 import CompareResultsView from '../../components/CompareResults/CompareResultsView';
 import SelectedRevisionsTable from '../../components/Shared/SelectedRevisionsTable';
+import { setSelectedRevisions } from '../../reducers/RevisionSlice';
 import { updateSearchResults } from '../../reducers/SearchSlice';
-import { setSelectedRevisions } from '../../reducers/SelectedRevisions';
 import getTestData from '../utils/fixtures';
 import { render, store } from '../utils/setupTests';
 import { screen } from '../utils/test-utils';

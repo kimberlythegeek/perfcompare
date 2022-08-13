@@ -4,7 +4,7 @@ import { act } from 'react-dom/test-utils';
 import { maxRevisionsError } from '../common/constants';
 import CompareResultsView from '../components/CompareResults/CompareResultsView';
 import SearchView from '../components/Search/SearchView';
-import { setSelectedRevisions } from '../reducers/SelectedRevisions';
+import { setSelectedRevisions } from '../reducers/RevisionSlice';
 import getTestData from './utils/fixtures';
 import { renderWithRouter, store } from './utils/setupTests';
 import { screen } from './utils/test-utils';
@@ -81,7 +81,7 @@ describe('Search View', () => {
     await user.click(button[0]);
     await user.click(button[1]);
 
-    expect(store.getState().selectedRevisions.revisions).toEqual([]);
+    expect(store.getState().revisions.selected).toEqual([]);
     expect(screen.queryByText('Commit Message')).not.toBeInTheDocument();
   });
 
